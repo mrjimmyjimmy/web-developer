@@ -1,0 +1,15 @@
+h1{
+	color: red;
+	background: rgb(100,100,100);
+}
+
+li{
+	color: green;
+}
+
+body{
+	/*background: url(https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.gettyimages.com%2Fgi-resources%2Fimages%2FCreativeLandingPage%2FHP_Sept_24_2018%2FCR3_GettyImages-159018836.jpg&imgrefurl=https%3A%2F%2Fwww.gettyimages.com%2F&docid=AB2C2TYLpAkRxM&tbnid=B2eZsz0SnDw--M%3A&vet=10ahUKEwjjltGTjtDfAhWMw7wKHaPUAjkQMwhpKAEwAQ..i&w=700&h=533&bih=727&biw=1440&q=image&ved=0ahUKEwjjltGTjtDfAhWMw7wKHaPUAjkQMwhpKAEwAQ&iact=mrc&uact=8);*/
+	background: rgb(0,0,0);
+}
+
+

@@ -1,0 +1,36 @@
+body{
+	width: 60%;
+	max-width: 700px;
+	margin: 0 auto;
+	border: 10px solid grey;
+	padding: 20px;
+}
+
+.time{
+	color: blue;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 0.2rem;
+}
+
+.title{
+	color: rgb(10,30,100);
+	font-family: Raleway;
+	font-weight: 800;
+	font-size: 30px;
+}
+
+.firstp{
+	border-left: 5px solid grey;
+	padding-left: 10px;
+}
+
+/*#p-bottom{
+	border-bottom: 2px solid grey;
+	padding-bottom: 10px;
+}*/
+
+
+
+
+
