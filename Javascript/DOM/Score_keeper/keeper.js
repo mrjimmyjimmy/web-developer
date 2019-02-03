@@ -49,7 +49,7 @@ function reset(){
 }
 
 numberInput.addEventListener('change', function(){
-  winScoreDisplay.textContent = numberInput.value;
+  winScoreDisplay.textContent = this.value;
   winningScore = Number(this.value);
   reset();
 })
