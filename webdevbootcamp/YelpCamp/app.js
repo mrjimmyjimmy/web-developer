@@ -14,6 +14,15 @@ var campgrounds = [
   // all images come from https://www.photosforclass.com
   {name: 'Salmon Creek', image: 'https://farm1.staticflickr.com/130/321487195_ff34bde2f5.jpg'},
   {name: 'Grantin Hill', image: 'https://farm6.staticflickr.com/5181/5641024448_04fefbb64d.jpg'},
+  {name: 'Box Hill', image: 'https://farm4.staticflickr.com/3273/2602356334_20fbb23543.jpg'},
+  {name: 'Salmon Creek', image: 'https://farm1.staticflickr.com/130/321487195_ff34bde2f5.jpg'},
+  {name: 'Grantin Hill', image: 'https://farm6.staticflickr.com/5181/5641024448_04fefbb64d.jpg'},
+  {name: 'Box Hill', image: 'https://farm4.staticflickr.com/3273/2602356334_20fbb23543.jpg'},
+  {name: 'Salmon Creek', image: 'https://farm1.staticflickr.com/130/321487195_ff34bde2f5.jpg'},
+  {name: 'Grantin Hill', image: 'https://farm6.staticflickr.com/5181/5641024448_04fefbb64d.jpg'},
+  {name: 'Box Hill', image: 'https://farm4.staticflickr.com/3273/2602356334_20fbb23543.jpg'},
+  {name: 'Salmon Creek', image: 'https://farm1.staticflickr.com/130/321487195_ff34bde2f5.jpg'},
+  {name: 'Grantin Hill', image: 'https://farm6.staticflickr.com/5181/5641024448_04fefbb64d.jpg'},
   {name: 'Box Hill', image: 'https://farm4.staticflickr.com/3273/2602356334_20fbb23543.jpg'}
 ];
 
@@ -28,15 +37,6 @@ app.get('/campgrounds', function(req, res){
 
 });
 
-// //get data from form, add data to array -- campgrounds
-// // redirect to '/campgrounds'
-// app.post('/campgrounds', function(req, res){
-//   var name = req.body.name;
-//   var image = req.body.image;
-//   var newCamp = {name: name, image: image};
-//   campgrounds.push(newCamp);
-//   res.send(campgrounds);
-// });
 
 app.post("/campgrounds", function(req, res){
     // get data from form and add to campgrounds array
