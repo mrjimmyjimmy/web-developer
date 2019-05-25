@@ -18,17 +18,12 @@ var blogSchema = new mongoose.Schema({
 });
 var Blog = mongoose.model('Blog', blogSchema);
 
-// Blog.create({
-//   title: 'test blog',
-//   image: 'https://neilpatel.com/wp-content/uploads/2017/08/blog.jpg',
-//   body: 'this is a test blog'
-// })
-//routes
 
 app.get('/', function(req, res){
   res.redirect('/blogs');
 });
 
+//INDEX ROUTES
 app.get('/blogs', function(req, res){
   Blog.find({}, function(err, blogs){
     if (err) {
@@ -38,6 +33,23 @@ app.get('/blogs', function(req, res){
     }
   });
 });
+
+//NEW ROUTES
+app.get('/blogs/new', function(req, res){
+  res.render('new');
+});
+
+//CREATE ROUTES
+app.post('/blogs', function(req, res){
+  Blog.create(req.body.blog, function(err, newBlog){
+    if (err) {
+      res.render('new');
+    } else {
+      res.redirect('/blogs');
+    }
+  });
+});
+
 
 app.listen(3000, 'localhost', function(){
   console.log('Server running!');
