@@ -5,7 +5,7 @@ var express               = require('express'),
     expressSanitizer      = require('express-sanitizer'),
     passport              = require('passport'),
     localStrategy         = require('passport-local'),
-    passportLocalMongoose = require('passport-local-mongoose'),
+    // passportLocalMongoose = require('passport-local-mongoose'),
     User                  = require('./models/user'),
     Blog                  = require('./models/blog'),
     mongoose              = require('mongoose');
@@ -21,14 +21,16 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(expressSanitizer());
 app.use(methodOverride('_method'));
 
-app.use(passport.initialize());
-app.use(passport.session());
+
 app.use(require('express-session')({
   secret: 'jimmy',
   resave: false,
   saveUninitialized: false
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 
+passport.use(new localStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -116,7 +118,7 @@ app.delete('/blogs/:id', function(req, res){
 // ===================
 // login funciton here
 // ===================
-app.get('/secret', function(req, res){
+app.get('/secret', isLoggedIn, function(req, res){
   res.render('secret');
 });
 
@@ -143,6 +145,38 @@ app.post('/register', function(req,res){
   });
 });
 
+//LOGIN ROUTES
+//render login form
+app.get('/login', function(req, res){
+  res.render('login');
+});
+//login logic
+//middleware
+app.post('/login', passport.authenticate('local',{
+  successRedirect: '/secret',
+  failureRedirect: '/login'
+
+}) ,function(req, res){
+});
+
+app.get('/logout', function(req, res){
+  req.logOut();
+  res.redirect('/login');
+});
+
+
+function isLoggedIn(req, res, next){
+  // console.log(req);
+  
+  if(req.isAuthenticated()){
+    console.log('login success');
+    
+    return next();
+  }
+  res.redirect('/login');
+}
+
+
 app.listen(3000, 'localhost', function(){
   console.log('Server running!');
-})
+});
