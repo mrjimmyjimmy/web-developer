@@ -1,27 +1,36 @@
-var express = require('express'),
-bodyParser = require('body-parser'),
-app = express(),
-methodOverride = require('method-override'),
-expressSanitizer = require('express-sanitizer'),
-mongoose = require('mongoose');
+var express               = require('express'),
+    bodyParser            = require('body-parser'),
+    app                   = express(),
+    methodOverride        = require('method-override'),
+    expressSanitizer      = require('express-sanitizer'),
+    passport              = require('passport'),
+    localStrategy         = require('passport-local'),
+    passportLocalMongoose = require('passport-local-mongoose'),
+    User                  = require('./models/user'),
+    Blog                  = require('./models/blog'),
+    mongoose              = require('mongoose');
 
 // app config
-mongoose.connect('mongodb://localhost/restful_blog_app', { useNewUrlParser: true });
+// mongoose.connect('mongodb://localhost/restful_blog_app', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/auth_demo_app', { useNewUrlParser: true });
+
+
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(expressSanitizer());
 app.use(methodOverride('_method'));
 
-// Mongoose/model config
-var blogSchema = new mongoose.Schema({
-  title: String,
-  image: String,
-  body: String,
-  created: {type: Date, default: Date.now}
-});
-var Blog = mongoose.model('Blog', blogSchema);
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(require('express-session')({
+  secret: 'jimmy',
+  resave: false,
+  saveUninitialized: false
+}));
 
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.get('/', function(req, res){
   res.redirect('/blogs');
@@ -100,6 +109,36 @@ app.delete('/blogs/:id', function(req, res){
       res.redirect('/blogs');
     } else {
       res.redirect('/blogs');
+    }
+  });
+});
+
+// ===================
+// login funciton here
+// ===================
+app.get('/secret', function(req, res){
+  res.render('secret');
+});
+
+//Auth routes
+//show sign up form
+app.get('/register', function(req, res){
+  res.render('register');
+});
+
+//handling user sign up
+app.post('/register', function(req,res){
+  req.body.username
+  req.body.password
+  User.register(new User({username: req.body.username}), req.body.password, function(err, user){
+    if (err) {
+      console.log(err);
+      return res.render('register');
+      
+    } else {
+      passport.authenticate('local')(req, res, function(){
+        res.redirect('/secret');
+      });
     }
   });
 });
