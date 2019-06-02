@@ -1,17 +1,17 @@
 {
-  "name": "yelpcamp",
+  "name": "v1",
   "version": "1.0.0",
-  "description": "project in Udemy",
+  "description": "YelpCamp v1",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Jimmy Xu",
+  "author": "Colt Steele",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "ejs": "^2.6.1",
-    "express": "^4.17.0",
-    "mongoose": "^5.5.10"
+    "body-parser": "^1.14.1",
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "mongoose": "^4.1.12"
   }
 }
